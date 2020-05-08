@@ -1,0 +1,22 @@
+{
+  "name": "gRPC",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"npm run start-server\" \"npm run start-client\"",
+    "dev": "concurrently \"npm run dev-server\" \"npm run dev-client\"",
+    "start-client": "client/client.js",
+    "dev-client": "nodemon client/client.js",
+    "start-server": "server/index.js",
+    "dev-server": "nodemon server/index.js",
+    "protoc": "protoc -I=. ./protos/greet.proto --js_out=import_style=commonjs,binary:./server  --grpc_out=./server --plugin=protoc-gen-grpc=`which grpc_tools_node_protoc_plugin`"
+  },
+  "dependencies": {
+    "google-protobuf": "^3.12.0-rc.1",
+    "grpc": "^1.24.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
